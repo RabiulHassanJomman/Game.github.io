@@ -107,7 +107,22 @@ function spawnEnemy() {
     enemies.push(new Enemy(x, y, radius, color, velocity));
   }, 1000);
 }
-
+window.addEventListener("touchstart", (event) => {
+  for (let i = 0; i < event.touches.length; i++) {
+    const touch = event.touches[i];
+    const angle = Math.atan2(
+      touch.clientY - GAME_HEIGHT / 2,
+      touch.clientX - GAME_WIDTH / 2
+    );
+    const velocity = {
+      x: Math.cos(angle) * 4,
+      y: Math.sin(angle) * 4
+    };
+    projectiles.push(
+      new Projectile(GAME_WIDTH / 2, GAME_HEIGHT / 2, 4, "white", velocity)
+    );
+  }
+});
 window.addEventListener("click", (event) => {
   let angle = Math.atan2(event.clientY - GAME_HEIGHT / 2, event.clientX - GAME_WIDTH / 2);
   let velocity = {
