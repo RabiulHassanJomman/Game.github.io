@@ -12,7 +12,7 @@
       background-color: black;
       margin: 0;
     }
-
+    
     div {
       margin: 0;
       padding: 0;
@@ -21,6 +21,51 @@
 </head>
 
 <body>
+  <button id="tutorialBtn" style="
+  background-color: white;
+  font-family: Arial, sans-serif;
+  color: black;
+  position: fixed; 
+  top: 20px; 
+  right: 20px;
+  z-index: 1001;
+  padding: 8px 12px;
+  ">Tutorial</button>
+  
+  <div id="tutorialModal" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0; 
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  overflow-y: auto;
+  z-index: 1000;
+">
+    <h2 style="text-align: center; margin-bottom: 20px;">How to Play</h2>
+    <ol style="max-width: 700px; margin: 0 auto; font-size: 1.2em; line-height: 1.5;">
+      <li><strong>Click to Shoot:</strong> Shoot projectiles by clicking anywhere on the screen. Projectiles fly toward the cursor.</li>
+      <li><strong>Avoid Enemies:</strong> Enemies spawn from the edges and move toward you. If they touch you, it's game over!</li>
+      <li><strong>Destroy Enemies:</strong> Hit enemies with projectiles. Bigger ones shrink first before exploding.</li>
+      <li><strong>Score Points:</strong> You get 50 points for shrinking and 100 points for destroying an enemy.</li>
+      <li><strong>Cool Explosions:</strong> Destroyed enemies create particle effects. No worries, they're harmless and purely decorative!</li>
+      <li><strong>Restart:</strong> Click the "Start Game" button after a game over to play again.</li>
+    </ol>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <button id="closeTutorial" style="
+      padding: 12px 24px;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 5px;
+    ">Close</button>
+    </div>
+  </div>
   <div class="fixed text-white text-sm ml-2 mt-1 select-none"><span>Score: </span><span id="scoreEl">0</span></div>
   <div class="fixed inset-0 flex items-center justify-center" id="modalEl">
     <div class="bg-white max-w-sm p-6 w-full text-center">
@@ -35,7 +80,7 @@
   </canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="script.js" type="module" charset="utf-8">
-   
+  
   </script>
 </body>
 
