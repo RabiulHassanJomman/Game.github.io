@@ -18,6 +18,7 @@ class Enemy {
     this.x += this.velocity.x;
     this.y += this.velocity.y;
   }
+  
 }
 class Player extends Enemy {}
 class Projectile extends Enemy {}
@@ -50,8 +51,8 @@ class Particle {
     this.y += this.velocity.y;
     this.alpha -= 0.1;
   }
+  
 }
-
 
 let canvas = document.getElementById("canvas");
 canvas.width = innerWidth;
@@ -106,6 +107,7 @@ function spawnEnemy() {
     
     enemies.push(new Enemy(x, y, radius, color, velocity));
   }, 1000);
+  
 }
 
 window.addEventListener("click", (event) => {
@@ -116,7 +118,6 @@ window.addEventListener("click", (event) => {
   };
   projectiles.push(new Projectile(GAME_WIDTH / 2, GAME_HEIGHT / 2, 4, "white", velocity));
 });
-
 
 // ANIMATION LOOP
 let animationId;
@@ -150,7 +151,7 @@ function animate() {
     enemy.draw(ctx);
     enemy.update();
     
-    // ENEMY COLLISION WITH PLAYER 
+    // ENEMY COLLISION WITH PLAYER   
     let dist = Math.hypot(player.x - enemy.x, player.y - enemy.y);
     if (dist - player.radius - enemy.radius < 1) {
       clearInterval(setIntervalId);
@@ -159,7 +160,7 @@ function animate() {
       modalEl.style.display = "flex";
     }
     
-    // ENEMY COLLISION WITH PROJECTILE 
+    // ENEMY COLLISION WITH PROJECTILE   
     projectiles.forEach((projectile, projectileIndex) => {
       let dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
       if (dist - projectile.radius - enemy.radius < 1) {
@@ -191,6 +192,7 @@ function animate() {
       }
     });
   });
+  
 }
 
 startGameBtn.addEventListener("click", () => {
