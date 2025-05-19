@@ -48,7 +48,7 @@ class Enemy {
       this.velocity.y *= this.firction;
       this.x += this.velocity.x;
       this.y += this.velocity.y;
-      this.alpha -= 0.01;
+      this.alpha -= 0.1;
     }
   }
   
