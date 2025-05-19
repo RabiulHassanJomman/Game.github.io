@@ -107,7 +107,9 @@ function spawnEnemy() {
     enemies.push(new Enemy(x, y, radius, color, velocity));
   }, 1000);
 }
-window.addEventListener("touchstart", (event) => {
+
+let istouched = false;
+document.addEventListener("touchstart", (event) => {
   for (let i = 0; i < event.touches.length; i++) {
     const touch = event.touches[i];
     const angle = Math.atan2(
@@ -122,15 +124,22 @@ window.addEventListener("touchstart", (event) => {
       new Projectile(GAME_WIDTH / 2, GAME_HEIGHT / 2, 4, "white", velocity)
     );
   }
+  istouched = true;
 });
-window.addEventListener("click", (event) => {
-  let angle = Math.atan2(event.clientY - GAME_HEIGHT / 2, event.clientX - GAME_WIDTH / 2);
-  let velocity = {
-    x: Math.cos(angle) * 4,
-    y: Math.sin(angle) * 4
-  };
-  projectiles.push(new Projectile(GAME_WIDTH / 2, GAME_HEIGHT / 2, 4, "white", velocity));
+
+
+document.addEventListener("click", (event) => {
+  if (!istouched) {
+    let angle = Math.atan2(event.clientY - GAME_HEIGHT / 2, event.clientX - GAME_WIDTH / 2);
+    let velocity = {
+      x: Math.cos(angle) * 4,
+      y: Math.sin(angle) * 4
+    };
+    projectiles.push(new Projectile(GAME_WIDTH / 2, GAME_HEIGHT / 2, 4, "white", velocity));
+  }
+  istouched = false;
 });
+
 
 
 // ANIMATION LOOP
@@ -213,6 +222,8 @@ startGameBtn.addEventListener("click", () => {
   modalEl.style.display = "none";
   animate();
   spawnEnemy();
+  tutorialBtn.style.visibility = "hidden";
+  pauseBtn.style.visibility = "visible";
 });
 
 const tutorialBtn = document.getElementById('tutorialBtn');
@@ -225,4 +236,31 @@ tutorialBtn.addEventListener('click', () => {
 
 closeTutorial.addEventListener('click', () => {
   tutorialModal.style.display = 'none';
+})
+
+let isPaused = false;
+let isClicked = false;
+let resumeGame = document.getElementById("resumeGame");
+let resumeBtn = document.getElementById("resumeBtn");
+let pauseBtn = document.getElementById("pauseBtn")
+// Tab is not active → Pause the game
+function pause() {
+  cancelAnimationFrame(animationId);
+  clearInterval(setIntervalId);
+  resumeGame.style.visibility = "visible"
+}
+
+function resume() {
+  animate();
+  spawnEnemy();
+  resumeGame.style.visibility = "hidden"
+  console.log("resumed")
+}
+resumeBtn.addEventListener("click", resume)
+pauseBtn.addEventListener("click", pause)
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    pause();
+  } 
 });
+
