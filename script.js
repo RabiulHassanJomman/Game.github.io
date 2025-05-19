@@ -123,7 +123,7 @@ class Enemy {
   
   function animate() {
     animationId = requestAnimationFrame(animate);
-    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
   
     player.draw(ctx);
