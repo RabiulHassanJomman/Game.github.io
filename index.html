@@ -21,15 +21,22 @@
 </head>
 
 <body>
-  <button id="tutorialBtn" style="
-  background-color: white;
+  <button class="bg-blue-500 rounded-full text-white py-2 px-3 text-sm" type="submit" id="pauseBtn" style="
   font-family: Arial, sans-serif;
-  color: black;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1003;
+  visibility: hidden;
+  outline: none;
+  focus: outline-none">Pause</button>
+  
+  <button class="bg-blue-500 rounded-full text-white py-2 px-3 text-sm" id="tutorialBtn" style="
+  font-family: Arial, sans-serif;
   position: fixed; 
   top: 20px; 
   right: 20px;
   z-index: 1001;
-  padding: 8px 12px;
   ">Tutorial</button>
   
   <div id="tutorialModal" style="
@@ -66,6 +73,7 @@
     ">Close</button>
     </div>
   </div>
+  <!--start game-->
   <div class="fixed text-white text-sm ml-2 mt-1 select-none"><span>Score: </span><span id="scoreEl">0</span></div>
   <div class="fixed inset-0 flex items-center justify-center" id="modalEl">
     <div class="bg-white max-w-sm p-6 w-full text-center">
@@ -76,6 +84,19 @@
       </div>
     </div>
   </div>
+  
+  <!-- resume game -->
+  <div style="visibility: hidden;" class="fixed inset-0 flex items-center justify-center" id="resumeGame">
+    <div class="bg-white max-w-sm p-6 w-full text-center">
+      <h1 class="font-bold text-4xl leading-none mbq-5" id="bigScoreEl">Paused</h1>
+      <h1 class="font-bold text-4xl leading-none" id="bigScoreEl"></h1>
+      <div>
+        <button class="bg-blue-500 text-white py-3 w-full rounded-full text-sm" id="resumeBtn" onclick="resume()">Resume Game</button>
+      </div>
+    </div>
+  </div>
+  
+  
   <canvas id="canvas">
   </canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
